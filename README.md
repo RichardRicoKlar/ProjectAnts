@@ -24,3 +24,6 @@ Experiment contains 3 entities, from which each has different behaviour.
 
 ## What's the point of all of this?
 Good question. There isn't any obvious point. It's just an experiement, which should always leave different results.
+
+## What to do if I find a problem?
+Also bit tricky question. Feel free to raise an issue, but in reality, I don't really care :)
