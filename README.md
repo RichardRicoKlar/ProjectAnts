@@ -1,4 +1,4 @@
-# ProjectAnts
+# Project Ants
 Visualised randomiser experiment.
 
 Experiment contains 3 entities, from which each has different behaviour.
