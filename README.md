@@ -21,3 +21,6 @@ Experiment contains 3 entities, from which each has different behaviour.
 - New Ant is produced
 ### Bug meets Sugar:
 - Bug eats Sugar
+
+## What's the point of all of this?
+Good question. There isn't any obvious point. It's just an experiement, which should always leave different results.
