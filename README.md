@@ -1,5 +1,5 @@
 # Project Ants
-Visualised randomiser experiment.
+Visualised randomiser experiment. Currently in progress of coding, but idea's there.
 
 Experiment contains 3 entities, from which each has different behaviour.
 
