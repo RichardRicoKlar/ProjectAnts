@@ -7,7 +7,7 @@ There can be random numbers of each entity, there aren't limitations.
 ## Entities: 
 ### Ants:
 - Moves randomly in 1 of the 4 directions
-- Ant will die after 20 steps, because of an old age :(
+- Ant will die after 20 steps/ticks, because of an old age :(
 ### Bugs:
 - Moves randomly in 1 of the 4 directions
 - Never dies by age
