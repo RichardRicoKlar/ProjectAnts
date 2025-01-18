@@ -18,9 +18,10 @@ Experiment contains 3 entities, from which each has different behaviour.
 ### Ant meets Bug:
 - Bug dies
 ### Ant meets Sugar:
+- Ant eats sugar and prolongs own life by 20 ticks
 - New Ant is produced
 ### Bug meets Sugar:
-- Bug eats Sugar
+- Bug eats Sugar - no further effect
 
 ## What's the point of all of this?
 Good question. There isn't any obvious point. It's just an experiement, which should always leave different results.
