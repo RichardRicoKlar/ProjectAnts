@@ -12,5 +12,11 @@ namespace ProjectAnts.Core
         public int ColumnNumber { get; set; }
         public bool IsOccupied { get; set; }
         public string OccupyingEntityName { get; set; }
+
+        public Cell(int x, int y)
+        {
+            RowNumber = x;
+            ColumnNumber = y;
+        }
     }
 }

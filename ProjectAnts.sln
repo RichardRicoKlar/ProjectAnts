@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectAnts", "ProjectAnts\ProjectAnts.csproj", "{A29981FB-8058-4FF3-9C3E-709AA36A3F48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectAnts", "ProjectAnts\ProjectAnts.csproj", "{A29981FB-8058-4FF3-9C3E-709AA36A3F48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectAnts.Core", "ProjectAnts.Core\ProjectAnts.Core.csproj", "{856F93D4-B65A-4ED0-A013-ABBD1D8A4154}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectAnts.Core", "ProjectAnts.Core\ProjectAnts.Core.csproj", "{856F93D4-B65A-4ED0-A013-ABBD1D8A4154}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectAnts.Console", "ProjectAnts.Console\ProjectAnts.Console.csproj", "{85AE93E3-B601-4B06-8034-A82C59959B90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectAnts.Console", "ProjectAnts.Console\ProjectAnts.Console.csproj", "{85AE93E3-B601-4B06-8034-A82C59959B90}"
+	ProjectSection(ProjectDependencies) = postProject
+		{856F93D4-B65A-4ED0-A013-ABBD1D8A4154} = {856F93D4-B65A-4ED0-A013-ABBD1D8A4154}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
