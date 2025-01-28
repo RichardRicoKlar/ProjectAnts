@@ -3,13 +3,21 @@ using System;
 
 class Program
 {
-    Board newBoard = new Board(10);
     static void Main(string[] args)
     {
-        Console.WriteLine("TEST!");
+        Board newBoard = new Board(10);
+        Console.WriteLine("Project Ants!");
+        CreateBoard(newBoard);
     }
     private static void CreateBoard(Board board)
     {
-
+        for (int i = 0; i < board.Size; i++)
+        {
+            for(int j = 0; j < board.Size; j++)
+            {
+                Console.Write(".");
+            }
+            Console.WriteLine(".");
+        }
     }
 }
