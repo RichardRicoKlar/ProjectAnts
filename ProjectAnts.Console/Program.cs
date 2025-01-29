@@ -5,6 +5,7 @@ using System.Timers;
 
 class Program
 {
+    static Board newBoard = new Board(10);
     static void Main(string[] args)
     {
         LoadBoard(); //First load
@@ -18,13 +19,14 @@ class Program
         Console.WriteLine("Press \'q\' to quit the sample.");
         while (Console.Read() != 'q') ;
     }
-    private static void CreateBoard(Board board)
+    private static void DrawBoard(Board board)
     {
         for (int i = 0; i < board.Size; i++)
         {
             for(int j = 0; j < board.Size; j++)
             {
                 Cell c = board.TheGrid[i,j];
+                if (c.OccupyingEntity is Ant) { Console.Write(" x "); }
                 Console.Write(" . ");
             }
             Console.WriteLine(" . ");
@@ -37,8 +39,7 @@ class Program
         Console.WriteLine("Project Ants!");
         Console.WriteLine(); //mezera
 
-        Board newBoard = new Board(10);
-        CreateBoard(newBoard);
+        DrawBoard(newBoard);
 
         Console.WriteLine();
     }

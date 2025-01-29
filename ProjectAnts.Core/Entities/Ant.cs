@@ -8,6 +8,7 @@ namespace ProjectAnts.Core
 {
     public class Ant
     {
-
+        public Cell[,] Position { get; set; }
+        public int Age { get; set; }
     }
 }
