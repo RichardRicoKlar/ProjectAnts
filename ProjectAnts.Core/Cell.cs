@@ -13,6 +13,12 @@ namespace ProjectAnts.Core
         public bool IsOccupied { get; set; }
         public object OccupyingEntity { get; set; }
 
+        public Cell()
+        {
+            RowNumber = 0;
+            ColumnNumber = 0;
+            OccupyingEntity = new object();
+        }
         public Cell(int x, int y)
         {
             RowNumber = x;

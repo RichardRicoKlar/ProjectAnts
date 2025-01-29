@@ -9,7 +9,9 @@ class Program
     static void Main(string[] args)
     {
         LoadBoard(); //First load
-
+        Ant ant = new Ant();
+        newBoard.TheGrid[2, 3].OccupyingEntity = ant;
+        ant.Position = newBoard.TheGrid[2, 3];
         //Timer
         System.Timers.Timer aTimer = new System.Timers.Timer();
         aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
@@ -27,7 +29,7 @@ class Program
             {
                 Cell c = board.TheGrid[i,j];
                 if (c.OccupyingEntity is Ant) { Console.Write(" x "); }
-                Console.Write(" . ");
+                else { Console.Write(" . "); }
             }
             Console.WriteLine(" . ");
         }
@@ -37,11 +39,11 @@ class Program
         Console.Clear();
 
         Console.WriteLine("Project Ants!");
-        Console.WriteLine(); //mezera
+        Console.WriteLine(); //Empty line
 
         DrawBoard(newBoard);
 
-        Console.WriteLine();
+        Console.WriteLine(); //Empty line
     }
     private static void OnTimedEvent(object source, ElapsedEventArgs e)
     {
