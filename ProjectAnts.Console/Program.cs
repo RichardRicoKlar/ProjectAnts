@@ -18,7 +18,6 @@ class Program
         aTimer.Interval = 1000; // ~ 1 seconds
         aTimer.Enabled = true;
 
-        Console.WriteLine("Press \'q\' to quit the sample.");
         while (Console.Read() != 'q') ;
     }
     private static void DrawBoard(Board board)
