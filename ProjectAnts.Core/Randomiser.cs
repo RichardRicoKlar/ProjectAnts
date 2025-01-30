@@ -8,7 +8,23 @@ namespace ProjectAnts.Core
 {
     public class Randomiser
     {
-        public Cell RandomDirection(Cell cell)
+        public static Cell RandomLocation(Board board)
+        {
+            Cell cell = new Cell();
+
+            int boardSize = board.Size;
+            Random random1 = new Random();
+            int rowInt = random1.Next(0, boardSize);
+
+            Random random2 = new Random();
+            int columnInt = random2.Next(0, boardSize);
+
+            cell.RowNumber = rowInt;
+            cell.ColumnNumber = columnInt;
+
+            return cell;
+        }
+        public static Cell RandomDirection(Cell cell)
         {
             // -1 left | 0 stay | 1 right
             Random row = new Random();

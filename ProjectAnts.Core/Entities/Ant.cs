@@ -16,10 +16,6 @@ namespace ProjectAnts.Core
             Age = 0;
             Position = new Cell(0,0);
         }
-        public void UpdatePosition(Cell currentCell)
-        {
-            Position = Randomiser.RandomDirection(currentCell);
-        }
         public void UpdateAge()
         {
             Age++;
