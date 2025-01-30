@@ -24,15 +24,20 @@ namespace ProjectAnts.Core
 
             return cell;
         }
-        public static Cell RandomDirection(Cell cell)
+        public static void RandomDirection(Cell cell)
         {
-            // -1 left | 0 stay | 1 right
-            Random row = new Random();
-            int rowInt = row.Next(3) - 1;
-
-            // -1 up | 0 stay | 1 down
+            //Pick method
+            Random method = new Random();
+            int rowInt = 0;
             int columnInt = 0;
-            if (cell.RowNumber == rowInt)
+
+            if (method.Next(100) < 50)
+            {
+                // -1 left | 0 stay | 1 right
+                Random row = new Random();
+                rowInt = row.Next(3) - 1;
+            }
+            else
             {
                 Random column = new Random();
                 columnInt = column.Next(3) - 1;
@@ -41,11 +46,6 @@ namespace ProjectAnts.Core
             //Counting
             cell.RowNumber = cell.RowNumber + rowInt;
             cell.ColumnNumber = cell.ColumnNumber + columnInt;
-
-            Console.WriteLine("Row roll: " + rowInt);
-            Console.WriteLine("Column roll: " + columnInt);
-
-            return cell;
         }
     }
 }

@@ -62,11 +62,11 @@ class Program
             }
         }
     }
-    private static void AntLogic (Cell cell)
+    private static void AntLogic(Cell cell)
     {
+        Cell cellHolder = cell;
         cell.OccupyingEntity = null;
-        newBoard.TheGrid[cell.RowNumber, cell.ColumnNumber] = cell;
-        Cell newCell = Randomiser.RandomDirection(cell);
-        newBoard.TheGrid[newCell.RowNumber, newCell.ColumnNumber].OccupyingEntity = new Ant();
+        Randomiser.RandomDirection(cellHolder);
+        newBoard.TheGrid[cellHolder.RowNumber, cellHolder.ColumnNumber].OccupyingEntity = new Ant();
     }
 }
