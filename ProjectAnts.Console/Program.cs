@@ -5,13 +5,13 @@ using System.Timers;
 
 class Program
 {
-    static Board newBoard = new Board(10);
+    static Board newBoard = new Board(11);
     static void Main(string[] args)
     {
         LoadBoard(); //First load
         Ant ant = new Ant();
         newBoard.TheGrid[5, 5].OccupyingEntity = ant;
-        ant.Position = newBoard.TheGrid[2, 3];
+        ant.Position = newBoard.TheGrid[5, 5];
         //Timer
         System.Timers.Timer aTimer = new System.Timers.Timer();
         aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
@@ -28,7 +28,7 @@ class Program
             for(int j = 0; j < board.Size; j++)
             {
                 Cell c = board.TheGrid[i,j];
-                if (c.OccupyingEntity is Ant) { Console.Write(" x "); }
+                if (c.OccupyingEntity is Ant) { Console.Write(" X "); }
                 else { Console.Write(" . "); }
             }
             Console.WriteLine(" . ");
@@ -58,13 +58,13 @@ class Program
             for (int j = 0; j < board.Size; j++)
             {
                 Cell c = board.TheGrid[i, j];
-                if (c.OccupyingEntity is Ant) { AntLogic(c); }
+                if (c.OccupyingEntity is Ant) { /* AntLogic(c); */ }
             }
         }
     }
     private static void AntLogic (Cell cell)
     {
-        cell.OccupyingEntity = new object();
+        cell.OccupyingEntity = null;
         newBoard.TheGrid[cell.RowNumber, cell.ColumnNumber] = cell;
         Cell newCell = Randomiser.RandomDirection(cell);
         newCell.OccupyingEntity = new Ant();
