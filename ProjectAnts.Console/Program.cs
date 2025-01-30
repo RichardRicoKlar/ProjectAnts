@@ -8,10 +8,10 @@ class Program
     static Board newBoard = new Board(11);
     static void Main(string[] args)
     {
+        newBoard.TheGrid[5, 5].OccupyingEntity = new Ant();
+
         LoadBoard(); //First load
-        Ant ant = new Ant();
-        newBoard.TheGrid[5, 5].OccupyingEntity = ant;
-        ant.Position = newBoard.TheGrid[5, 5];
+
         //Timer
         System.Timers.Timer aTimer = new System.Timers.Timer();
         aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
@@ -58,7 +58,8 @@ class Program
             for (int j = 0; j < board.Size; j++)
             {
                 Cell c = board.TheGrid[i, j];
-                if (c.OccupyingEntity is Ant) { /* AntLogic(c); */ }
+                if (c.OccupyingEntity is Ant) { AntLogic(c);
+                }
             }
         }
     }
@@ -67,7 +68,6 @@ class Program
         cell.OccupyingEntity = null;
         newBoard.TheGrid[cell.RowNumber, cell.ColumnNumber] = cell;
         Cell newCell = Randomiser.RandomDirection(cell);
-        newCell.OccupyingEntity = new Ant();
-        newBoard.TheGrid[newCell.RowNumber, newCell.ColumnNumber] = newCell;
+        newBoard.TheGrid[newCell.RowNumber, newCell.ColumnNumber].OccupyingEntity = new Ant();
     }
 }

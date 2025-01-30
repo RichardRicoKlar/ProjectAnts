@@ -28,15 +28,18 @@ namespace ProjectAnts.Core
         {
             // -1 left | 0 stay | 1 right
             Random row = new Random();
-            int rowInt = row.Next(-1, 1);
+            int rowInt = row.Next(0, 3) - 1;
 
             // -1 up | 0 stay | 1 down
             Random column = new Random();
-            int columnInt = column.Next(-1, 1);
+            int columnInt = column.Next(0, 3) - 1;
 
             //Counting
             cell.RowNumber = cell.RowNumber + rowInt;
             cell.ColumnNumber = cell.ColumnNumber + columnInt;
+
+            Console.WriteLine("Row roll: " + rowInt);
+            Console.WriteLine("Column roll: " + columnInt);
 
             return cell;
         }
