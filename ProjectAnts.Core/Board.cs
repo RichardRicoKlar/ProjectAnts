@@ -8,14 +8,14 @@ namespace ProjectAnts.Core
 {
     public class Board
     {
-        private int x;
-        private int y;
+        public int X { get; }
+        public int Y { get; }
 
-        public int Size { get; }
+        public int Size { get; set; }
         public Board(int size)
         {
-            this.x = size;
-            this.y = size;
+            X = size;
+            Y = size;
         }
     }
 }

@@ -4,9 +4,9 @@ Console.WriteLine("Test");
 
 Board newBoard = new Board(20); //Board dimentions
 
-for (int i = 0; i < newBoard.Size; i++)
+for (int i = 0; i < newBoard.Y; i++)
 {
-    for (int j = 0; j < newBoard.Size; j++)
+    for (int j = 0; j < newBoard.X; j++)
     {
         Console.Write(" . ");
         /*
