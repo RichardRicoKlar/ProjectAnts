@@ -1,11 +1,11 @@
 ﻿namespace ProjectAnts.Core
 {
-    public enum GridValue
+    public enum Entities
     {
         Empty,
         Ant,
         Bug,
         Sugar,
-        Outside
+        Wall
     }
 }

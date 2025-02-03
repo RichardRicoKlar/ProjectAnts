@@ -1,21 +1,18 @@
 ﻿using ProjectAnts.Core;
 
-Console.WriteLine("Test");
+Console.WriteLine("Project Ants!");
+Console.WriteLine();
 
-Board newBoard = new Board(20); //Board dimentions
+Board newBoard = new Board(25,15); //Create new board
+newBoard.CurrentCell[5, 5].Entity = Entities.Ant; //Drop ant to test the code
 
-for (int i = 0; i < newBoard.Y; i++)
-{
-    for (int j = 0; j < newBoard.X; j++)
-    {
-        Console.Write(" . ");
-        /*
-        if (x == 0 || y == 0 || x == newBoard.Size -1 || y == newBoard.Size - 1)
-        {
-            Console.Write("#");
-        }
-        else { Console.Write(" "); }
-        */
-    }
-    Console.WriteLine();
-}
+
+ConsoleControls.UpdateBoard(newBoard);
+
+System.Timers.Timer aTimer = new System.Timers.Timer();
+aTimer.Elapsed += (sender, e) => ConsoleControls.UpdateBoard(newBoard);
+aTimer.Interval = 1000; // ~ 5 seconds
+aTimer.Enabled = true;
+aTimer.AutoReset = true;
+
+while (Console.Read() != 'q') ;
