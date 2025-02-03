@@ -25,6 +25,8 @@ public class ConsoleControls
                 else { Console.Write(" "); }
             }
             Console.WriteLine();
+
+            //Add logic
         }
     }
 }
