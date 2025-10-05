@@ -4,7 +4,6 @@
     {
         public int RowNumber { get; set; } = x;
         public int ColumnNumber { get; set; } = y;
-        public bool HasEntity { get; set; } = false;
-        public bool HasSugar { get; set; } = false;
+        public Entity CurrentEntity { get; set; } = Entity.Empty;
     }
 }

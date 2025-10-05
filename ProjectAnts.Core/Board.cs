@@ -1,17 +1,15 @@
-﻿namespace ProjectAnts.Core
+﻿using ProjectAnts.Core.Entities;
+
+namespace ProjectAnts.Core
 {
     public class Board
     {
         public int X { get; }
         public int Y { get; }
         public Cell[,] CurrentCell { get; set; }
-
-        private int entityX = 5;
-        private int entityY = 5;
+        public List<Ant> Ants { get; set; } = [];
+        public List<Bug> Bugs { get; set; } = [];
         private static readonly Random rng = new();
-
-        public Board(int size) : this(size, size) { }
-
         public Board(int x, int y)
         {
             X = x;
@@ -25,16 +23,7 @@
                     CurrentCell[j, i] = new Cell(j, i);
                 }
             }
-
-            // Place entity somewhere
-            entityX = rng.Next(0, X);
-            entityY = rng.Next(0, Y);
-            CurrentCell[entityX, entityY].HasEntity = true;
-
-            // Place sugar at random position (not overlapping entity)
-            PlaceSugar();
         }
-
         public void Display()
         {
             Console.Clear();
@@ -43,77 +32,45 @@
                 for (int j = 0; j < X; j++)
                 {
                     var cell = CurrentCell[j, i];
-                    if (cell.HasEntity)
+                    switch (cell.CurrentEntity)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("E ");
-                        Console.ResetColor();
-                    }
-                    else if (cell.HasSugar)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("O ");
-                        Console.ResetColor();
-                    }
-                    else
-                    {
-                        Console.Write("_ ");
+                        case Entity.Ant:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("A ");
+                            Console.ResetColor();
+                            break;
+                        case Entity.Bug:
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.Write("B ");
+                            Console.ResetColor();
+                            break;
+                        case Entity.Sugar:
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write("O ");
+                            Console.ResetColor();
+                            break;
+                        default: Console.Write("_ "); break;
                     }
                 }
                 Console.WriteLine();
             }
         }
-
         public void Tick(int tickCount)
         {
-            CurrentCell[entityX, entityY].HasEntity = false;
+            // Move ants
+            foreach (var ant in Ants.ToList()) ant.Tick(this);
 
-            (int dx, int dy) = RandomDirection();
-            int newX = entityX + dx;
-            int newY = entityY + dy;
+            // Move bugs
+            foreach (var bug in Bugs.ToList()) bug.Tick(this);
 
-            if (newX >= 0 && newX < X && newY >= 0 && newY < Y)
-            {
-                entityX = newX;
-                entityY = newY;
-            }
-
-            var newCell = CurrentCell[entityX, entityY];
-
-            // Check for sugar collision BEFORE setting HasEntity = true
-            if (newCell.HasSugar)
-            {
-                // Remove sugar from the cell
-                newCell.HasSugar = false;
-            }
-
-            // Now update entity position
-            newCell.HasEntity = true;
-
-            // Spawn new sugar every x ticks AFTER handling entity movement
-            if (tickCount % ExperimentDefaults.SugarSpawnRate == 0)
-            {
-                SpawnSugar();
-            }
-        }
-
-        private void PlaceSugar()
-        {
-            int sugarX, sugarY;
-            do
-            {
-                sugarX = rng.Next(0, X);
-                sugarY = rng.Next(0, Y);
-            }
-            while (sugarX == entityX && sugarY == entityY);
-
-            CurrentCell[sugarX, sugarY].HasSugar = true;
+            // Spawn new sugar every 5 ticks
+            if (tickCount % (rng.Next(5,11)*ExperimentDefaults.SugarSpawnRate) == 0) SpawnSugar();
         }
         public void SpawnSugar()
         {
             int sugarX, sugarY;
             int attempts = 0;
-            const int maxAttempts = 100; // avoid infinite loop
+            const int maxAttempts = 10; // avoid infinite loop in very full boards
 
             do
             {
@@ -121,25 +78,24 @@
                 sugarY = rng.Next(0, Y);
                 attempts++;
             }
-            while ((CurrentCell[sugarX, sugarY].HasEntity || CurrentCell[sugarX, sugarY].HasSugar) && attempts < maxAttempts);
+            while (CurrentCell[sugarX, sugarY].CurrentEntity != Entity.Empty && attempts < maxAttempts);
 
-            // Only place sugar if found a free spot
-            if (!CurrentCell[sugarX, sugarY].HasEntity && !CurrentCell[sugarX, sugarY].HasSugar)
-                CurrentCell[sugarX, sugarY].HasSugar = true;
+            // Only place sugar if we found a free spot
+            if (CurrentCell[sugarX, sugarY].CurrentEntity == Entity.Empty) CurrentCell[sugarX, sugarY].CurrentEntity = Entity.Sugar;
         }
-        private static (int dx, int dy) RandomDirection()
+        public void SpawnAnt()
         {
-            // 4 possible directions: up, down, left, right (no diagonals)
-            int direction = rng.Next(4); // 0=up, 1=down, 2=left, 3=right
-
-            return direction switch
-            {
-                0 => (0, -1),// up
-                1 => (0, 1),// down
-                2 => (-1, 0),// left
-                3 => (1, 0),// right
-                _ => (0, 0),// fallback, should never happen
-            };
+            int antX = rng.Next(0, X);
+            int antY = rng.Next(0, Y);
+            Ants.Add(new(antX, antY));
+            CurrentCell[antX, antY].CurrentEntity = Entity.Ant;
+        }
+        public void SpawnBug()
+        {
+            int bugX = rng.Next(0, X);
+            int bugY = rng.Next(0, Y);
+            Bugs.Add(new(bugX, bugY));
+            CurrentCell[bugX, bugY].CurrentEntity = Entity.Bug;
         }
     }
 }
