@@ -6,15 +6,16 @@
 
         // Sugar settings
         public static readonly int SugarsStarted = 3;
-        public static readonly int SugarSpawnRate = 1;
+        public static readonly double SugarSpawnRate = 1;
         public static readonly int SugarLifeValue = 20;
+        public static readonly int SugarDecayTime = 50;
 
         // Ant settings
-        public static readonly int AntsStarted = 6;
-        public static readonly int AntLifeTime = 20;
+        public static readonly int AntsStarted = 5;
+        public static readonly int AntLifeTime = 25;
 
         // Bug settings
-        public static readonly int BugsStarted = 5;
+        public static readonly int BugsStarted = 1;
         public static readonly int BugLifeValue = 10;
     }
 }

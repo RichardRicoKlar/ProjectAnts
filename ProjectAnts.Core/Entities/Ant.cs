@@ -25,7 +25,7 @@
 
 
             // Interactions
-            var cell = board.CurrentCell[X, Y];
+            Cell cell = board.CurrentCell[X, Y];
 
             switch (cell.CurrentEntity)
             {
@@ -33,12 +33,14 @@
                     board.SpawnAnt();
                     board.SpawnAnt();
                     Kill();
+                    board.Ants.Remove(this);
                     break;
                 case Entity.Bug:
                     var bug = board.Bugs.FirstOrDefault(b => b.X == X && b.Y == Y && b.IsAlive);
                     if (bug != null)
                     {
                         bug.Kill();
+                        board.Bugs.Remove(bug);
                         Lifetime -= ExperimentDefaults.BugLifeValue;
                         cell.CurrentEntity = Entity.Empty;
                     }

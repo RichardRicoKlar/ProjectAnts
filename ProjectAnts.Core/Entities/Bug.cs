@@ -27,12 +27,14 @@
             {
                 case Entity.Ant:
                     Kill();
+                    board.Bugs.Remove(this);
                     break;
                 case Entity.Bug:
                     board.SpawnBug();
                     break;
                 case Entity.Sugar:
                     cell.CurrentEntity = Entity.Empty;
+                    board.SpawnBug();
                     break;
                 default: break;
             }

@@ -1,12 +1,11 @@
 ﻿using ProjectAnts.Core;
 
-int tickCount = 0;
-
 Console.WriteLine("Project Ants!");
 Console.WriteLine();
 
-Board board = ExperimentDefaults.Board;
+int tickCount = 0;
 
+Board board = ExperimentDefaults.Board;
 
 for (int i = 0; i < ExperimentDefaults.AntsStarted; i++) board.SpawnAnt();
 
@@ -19,6 +18,9 @@ board.Display();
 var tickTimer = new System.Timers.Timer(500);
 tickTimer.Elapsed += (sender, e) =>
 {
+    Console.WriteLine("Project Ants!");
+    Console.WriteLine();
+
     tickCount++;
 
     // Tick all ants
@@ -34,6 +36,24 @@ tickTimer.Elapsed += (sender, e) =>
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("\nAll ants have died. Stopping simulation.");
+        Console.ResetColor();
+        tickTimer.Stop();
+    }
+
+    // Check if ants dominated the board
+    if (board.Ants.Count >= (board.X * board.Y * 0.9))
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine($"\nAnts have dominated the board in {tickCount} days. Stopping simulation.");
+        Console.ResetColor();
+        tickTimer.Stop();
+    }
+
+    // Check if bugs have dominated the board
+    if (board.Bugs.Count >=  (board.X * board.Y * 0.9))
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine($"\nBugs have dominated the board in {tickCount} days. Stopping simulation.");
         Console.ResetColor();
         tickTimer.Stop();
     }
