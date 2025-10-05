@@ -1,8 +1,9 @@
 # Project Ants
-Visualised randomiser experiment/simulation. Currently in progress of coding, but idea's below.
+Visualised randomiser experiment/simulation. Updated very occasionally but should work as some kind of weird simulation.
 
-Experiment contains a board of random size with 3 types of entities, from which each has different behaviour.
-There can be random numbers of each entity, there aren't limitations.
+Experiment is some form of ecosystem simulation with 3 types of entities. There's a 2D board of a custom size, Ants, Bugs and Sugars, from which each has bit different behaviour.
+There can be random numbers of each entity, there aren't limitations, except the board itself of course.
+Simulation runs on its own, base tick take 0.5 seconds, but can be adjusted by changing _SpeedRate_ in a settings script (more details below).
 
 ## Entities: 
 ### Ants:
@@ -41,7 +42,7 @@ In a core and terms of statistics however, I'd belive that ants should always ev
 Easy. Clone the repository and start ProjectAnts.Console. No need of any NuGet packages etc.
 You may amend some settings in ExperimentDefaults.cs:
  - _Board_ - (x,y) - Size of the board, x for horizontal size, y for vertical size. (default is 15 by 15)
- - _SpeedRate_ - Tickspeed multiplier, can be used to speed up simulation.
+ - _SpeedRate_ - Tickspeed multiplier, can be used to speed up simulation. Counted as percentage. (default is 100)
  - _SugarsStarted_ - How many Sugars will be spawned at the start of the simulation. (default is 3)
  - _SugarSpawnRate_ - Multiplier of Sugars spawn speed - 5ticks-10ticks * _[SugarSpawnRate]_ (default is 1)
  - _SugarLifeValue_ - How much extra life ticks Sugar provides when eaten by an Ant. (default is 20)
@@ -55,7 +56,13 @@ You may amend some settings in ExperimentDefaults.cs:
 Simulation can conclude in 3 results:
  - Ants have died and none is left on a board
  - Ants have dominated over 90% of the board
- - Bugs have dominated over 90% of the board
+ - Bugs have dominated over 90% of the board - standard result if ants take too long to spread
  
 ## What to do if I find a problem?
 Also bit tricky question. Feel free to raise an issue, but in reality, I don't really care :)
+
+## Known bugs / Weird stuff
+#### _"Solution contains unused WPF Project?"_
+Yes it does, maybe I'll get to it later. It's pointless at this moment.
+#### _"The higher the SpeedRate, the weirder's Console output."_
+Indeed, I've noticed that too. I believe that the problem is that my app currently calculates everything on each tick, instead of pre-calculating before showing any output and so it leaves some weird artifacts every now and then. I might fix that at some point later (or maybe not).
