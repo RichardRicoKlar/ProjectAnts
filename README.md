@@ -14,15 +14,15 @@ There can be random numbers of each entity, there aren't limitations.
 ### Sugar:
 - Doesn't move
 - Spawns randomly every 5-10 ticks * _SugarSpawnRate_
-- Will decay and turn into Bug after _SugarDecayTime_ ticks
+- Will decay and turn into Bug after _SugarDecayTime_ ticks, effectively becoming a bug nest due to a standard interactions below
 
 ## Interactions:
 ### Ant meets Bug:
 - Bug dies
-- Ant prolong own life by _BugLiveValue_ ticks
+- Ant prolongs its own life by _BugLiveValue_ ticks
 ### Ant meets Sugar:
 - Ant eats sugar
-- Ant prolongs own life by _SugarLifeValue_ ticks
+- Ant prolongs its own life by _SugarLifeValue_ ticks
 - New Ant is produced
 ### Bug meets Sugar:
 - Bug eats Sugar -> New Bug is born
@@ -40,14 +40,15 @@ In a core and terms of statistics however, I'd belive that ants should always ev
 ## How to run the simulation?
 Easy. Clone the repository and start ProjectAnts.Console. No need of any NuGet packages etc.
 You may amend some settings in ExperimentDefaults.cs:
- - _Board_ - (x,y) - size of the board, x for horizontal size, y for vertical size. (default is 15 by 15)
+ - _Board_ - (x,y) - Size of the board, x for horizontal size, y for vertical size. (default is 15 by 15)
+ - _SpeedRate_ - Tickspeed multiplier, can be used to speed up simulation.
  - _SugarsStarted_ - How many Sugars will be spawned at the start of the simulation. (default is 3)
  - _SugarSpawnRate_ - Multiplier of Sugars spawn speed - 5ticks-10ticks * _[SugarSpawnRate]_ (default is 1)
  - _SugarLifeValue_ - How much extra life ticks Sugar provides when eaten by an Ant. (default is 20)
  - _SugarDecayTime_ - How many ticks before Sugar rots and turns into Bug. (default is 50)
  - _AntsStarted_ - How many Ants will be spawned at the start of the simulation. (default is 5)
  - _AntLifeTime_ - How many ticks will individual Ant life for before dying by an old age. (default is 25)
- - _BugStarted_ - How many Bugs will be spawned at the start of the simulation. (default is 1)
+ - _BugStarted_ - How many Bugs will be spawned at the start of the simulation. (default is 2)
  - _BugLifeValue_ - How much extra life ticks Bug provides when eaten by an Ant. {default is 10)
 
 ## Conclusions
