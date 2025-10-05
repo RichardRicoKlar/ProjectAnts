@@ -15,7 +15,7 @@ for (int i = 0; i < ExperimentDefaults.SugarsStarted; i++) board.SpawnSugar();
 
 board.Display();
 
-var tickTimer = new System.Timers.Timer(500);
+var tickTimer = new System.Timers.Timer(500 * 100 / ExperimentDefaults.SpeedRate);
 tickTimer.Elapsed += (sender, e) =>
 {
     Console.WriteLine("Project Ants!");
